@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simple Calculator</h1>
+    
+        <input type="text" class="displaycalc" id="calcInput" onkeypress="return /[0-9]/i.test(event.key)" placeholder="0" >
+
+    <div class="container">
+        <div class="digit seven btn">7</div>
+        <div class="digit eight btn">8</div>
+        <div class="digit nine btn">9</div>  
+        <div class="op clear" onclick="clearDisplay()">CE</div>
+
+        <div class="digit four btn">4</div>
+        <div class="digit five btn">5</div>
+        <div class="digit 6 btn">6</div>
+        <div class="op multiply btn">x</div>  
+
+        <div class="digit one btn">1</div>
+        <div class="digit two btn">2</div>
+        <div class="digit three btn">3</div>
+        <div class="op division btn">/</div>
+    
+        <div class="op changeminus btn">-/+</div>
+        <div class="digit zero btn">0</div>
+        
+        <div class="op comma btn">.</div>
+        <div class="op plus btn">+</div>
+        <div class="op minus btn">-</div>
+        <div class="op equal btn">=</div>
+    </div>
+
+    <footer>
+        <p>Created by @sundeeseeyou with ☕| &copy; <span id="copyrightYear"></span> Some rights reserved. </p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="calc.js"></script>
+    <script>
+        document.getElementById("copyrightYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
