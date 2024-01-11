@@ -1,68 +1,60 @@
 
-let input2 = "";
+let input1 = [];
+let operator
 
-function clearDisplay(){
-    $("#calcInput").val("");
-}
-
-
-//first value inputted
+//this ONLY shows the live numbers pressed
 
 $(".digit").click((evt) => {
-    let currentValue = $("#calcInput").val();
-    // Append the clicked button's value to the current input value
-    $("#calcInput").val(currentValue + evt.target.innerHTML);
-    
+  let currentValue = $("#calcInput").val();
+  // Append the clicked button's value to the current input value
+  $("#calcInput").val(currentValue + evt.target.innerHTML);
 });
 
-//second value inputted
-
-
-//plus button pressed
 $(".op").click((evt) => {
-    let input1 = parseFloat($("#calcInput").val());
-    let operator = $(evt.target).data("operator");
+  input1.push(parseFloat($("#calcInput").val())); //when an OP clicked, input1 value updated
+  operator = $(evt.target).data("operator") ?? operator;
+  clearDisplay();
+});
 
-    switch(operator) {
-        case "plus":
-            calculation(input1,2,plus);
-            break;
-        case "minus":
-            calculation(input1,2,minus)
-            break;
-            default:
-                break;
-    }
+$("#equal").click((evt) => {
+  switch (operator) {
+    case "plus":
+      calculation(plus);
+      break;
+    case "minus":
+      calculation(minus);
+      break;
+    case "times":
+        calculation(times);
+    case "divide":
+        calculation(divide);
+    default:
+      break;
+  }
+});
 
-})
-
-
-
-function plus(num1,num2){
-   console.log (num1+num2);
+function plus(num1, num2) {
+  return num1 + num2;
 }
 
-function minus(num1,num2){
-    console.log(num1-num2);
+function minus(num1, num2) {
+  return num1 - num2;
 }
 
-function calculation(num1,num2,operatorFunction){
-    operatorFunction(num1,num2);
+function times(num1, num2) {
+  return num1 * num2;
 }
-    // switch (evt){
-    //     case plus:
-    //         alert("plus");
-    //         break;
-    //     case minus:
-    //         break;
-    //     case times:
-    //         break;
-    //     case divide:
-    //         break;
-    //     default:
-    
-    // }
 
-//1. Create a calculator numbers using grid
+function divide(num1, num2) {
+  return num1 / num2;
+}
 
-//2. When a button clicked, or a key pressed, it will show in the text area.
+function calculation(operatorFunction) {
+  const result = operatorFunction(...input1);
+  $("#calcInput").val(result);
+  input1 = [];
+}
+
+function clearDisplay() {
+  $("#calcInput").val("");
+}
